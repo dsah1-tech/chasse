@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHASE BANK</title>
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body {
+    background: #f6f8fc;
+    color: #172033;
+    padding-bottom: 85px;
+}
+.top-section {
+
+    background: white;
+
+    color: #172033;
+
+    padding: 18px 20px 28px;
+
+    border-radius: 0 0 28px 28px;
+
+    box-shadow: 0 3px 15px rgba(0,0,0,.06);
+
+}
+.top-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.search {
+    position: relative;
+    flex: 1;
+}
+.search i {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+}
+.search input {
+    width: 100%;
+    height: 42px;
+    border: 1px solid #dbe3ef;
+    outline: none;
+    border-radius: 14px;
+    padding: 0 15px 0 42px;
+    background: #f5f7fb;
+    color: #172033;
+    font-size: 15px;
+}
+.search input::placeholder {
+    color: #8b94a1;
+}
+.avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: white;
+    color: #0757c7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 18px 0 20px;
+    gap: 12px;
+}
+.logo {
+    width: 140px;
+    flex-shrink: 0;
+    height: 40px;
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.logo img{
+width: 100%;
+height: auto;
+object-fit: contain;
+display: block;
+}
+.greeting {
+    font-size: 16px;
+    font-weight: 700;
+    color:#172033;
+    text-align: right;
+    flex: 1;
+}
+.quick-actions{
+    display:flex;
+    gap:14px;
+    margin-top:20px;
+
+    overflow-x:auto;
+    overflow-y:hidden;
+
+    flex-wrap:nowrap;
+
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+
+    padding-right: 20px;
+}
+
+.quick-actions::-webkit-scrollbar{
+    display:none;
+}
+
+.action-icon i{
+    width: 20px;x;
+    height: 20px;
+
+    color:#0757c7;
+}
+.action{
+    flex:0 0 120px;
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:16px 10px;
+
+    min-height:110px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    cursor:pointer;
+
+    box-shadow:0 4px 15px rgba(0,0,0,.06);
+}
+.action:hover{
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 14px 35px rgba(0,0,0,.08);
+}.action{
+    min-width:180px;
+    height:145px;
+
+    background:#fff;
+
+    border-radius:24px;
+
+    display:flex;
+    flex-direction:column;
+
+    align-items:center;
+    justify-content:center;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.05);
+
+    transition:.25s ease;
+}
+
+.action:hover{
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 14px 35px rgba(0,0,0,.08);
+}
+.action:hover {
+    background: rgba(255,255,255,.2);
+}
+.action-icon{
+    width:40px;
+    height:40px;
+
+    border-radius:50%;
+
+    background:#edf5ff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin-bottom:12px;
+}
+.action span{
+    font-size:17px;
+
+    font-weight:600;
+
+    color:#172033;
+}
+
+.container {
+    max-width: 850px;
+    margin: auto;
+}
+.accounts {
+    margin: 20px;
+}
+.accounts-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 13px;
+}
+.accounts-header h2 {
+    font-size: 20px;
+}
+.account-switch {
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 50%;
+    background: white;
+    color: #0757c7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(20,40,70,.08);
+    cursor: pointer;
+    font-size: 22px;
+}
+.account-banner {
+    background: linear-gradient(135deg, #003ea8, #005ceb, #0f6fff);
+    border-radius: 28px;
+    padding: 30px;
+    box-shadow: 0 20px 45px rgba(25, 112, 234, 0.18);
+}
+.account-item {
+    padding: 4px 0 20px;
+}
+.account-item + .account-item {
+    border-top: 1px solid rgba(0,87,199,.25);
+    padding-top: 20px;
+}
+.account-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.account-name {
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: .5px;
+    opacity: .9;
+}
+.account-number {
+    font-size: 10px;
+    margin-top: 5px;
+    opacity: .7;
+}
+.account-balance {
+    font-size: 48px;
+    font-weight: 800;
+}
+.available {
+    font-size: 10px;
+    opacity: .65;
+    margin-top: 4px;
+}
+.banner-total {
+    border-top: 1px solid rgba(0,87,199,.25);
+    margin-top: 4px;
+    padding-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.banner-total span {
+    font-size: 12px;
+    opacity: .75;
+}
+.banner-total strong {
+    font-size: 17px;
+}
+.transactions-page {
+    display: none;
+}
+.section {
+    margin: 26px 20px;
+}
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 13px;
+}
+.section-heading h2 {
+    font-size: 19px;
+}
+.view {
+    color: #0757c7;
+    font-size: 13px;
+    font-weight: bold;
+}
+.transactions {
+    background: white;
+    border-radius: 21px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(20,40,70,.06);
+}
+.transaction {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    border-bottom: 1px solid #edf0f3;
+}
+.transaction:last-child {
+    border-bottom: none;
+}
+.transaction-icon {
+    width: 43px;
+    height: 43px;
+    border-radius: 13px;
+    background: #edf5ff;
+    color: #0757c7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 13px;
+}
+.transaction-icon i {
+    width: 19px;
+}
+.transaction-info {
+    flex: 1;
+}
+.transaction-info strong {
+    font-size: 14px;
+}
+.transaction-info P {
+    font-size: 13px;
+    color: #697484;
+}
+.amount {
+    text-align: right;
+    font-size: 14px;
+    font-weight: bold;
+}
+.amount.positive {
+    color: #16804b;
+}
+.amount.negative {
+    color: #d62828;
+}
+.date {
+    color: #9ba3ae;
+    font-size: 11px;
+    margin-top: 4px;
+}
+.offers {
+    margin: 26px 20px;
+}
+.offers p {
+    color: #707988;
+    font-size: 14px;
+    margin: 6px 0 15px;
+}
+.offer-list {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+.offer-list::-webkit-scrollbar {
+    display: none;
+}
+.offer {
+    min-width: 145px;
+    height: 105px;
+    background: white;
+    border-radius: 17px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 14px rgba(20,40,70,.06);
+}
+.offer i {
+    color: #0757c7;
+}
+.offer strong {
+    font-size: 13px;
+}
+.bottom-nav {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: rgba(255,255,255,.97);
+    backdrop-filter: blur(15px);
+    border-top: 1px solid #e2e6eb;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0 12px;
+    z-index: 20;
+}
+.nav {
+    color: #7a8492;
+    text-align: center;
+    font-size: 11px;
+    cursor: pointer;
+    min-width: 70px;
+}
+.nav i {
+    display: block;
+    width: 21px;
+    margin: 0 auto 5px;
+}
+.nav.active {
+    color: #0757c7;
+    font-weight: bold;
+}
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10,20,40,.55);
+    z-index: 100;
+    align-items: flex-end;
+}
+.modal-content {
+    background: white;
+    width: 100%;
+    max-width: 520px;
+    margin: auto;
+    border-radius: 27px 27px 0 0;
+    padding: 25px;
+}
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+}
+.close {
+    width: 35px;
+    height: 35px;
+    border: none;
+    border-radius: 50%;
+    background: #f0f2f5;
+    cursor: pointer;
+}
+.form-group {
+    margin-bottom: 16px;
+}
+.form-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    color: #697484;
+    margin-bottom: 7px;
+}
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #dce1e7;
+    border-radius: 12px;
+    outline: none;
+    font-size: 15px;
+}
+.transfer-button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 13px;
+    background: #0757c7;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+}
+/* ============================
+   TRANSFER ERROR POPUP
+============================ */
+.error-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10,20,40,.55);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.error-box {
+    background: white;
+    width: 100%;
+    max-width: 360px;
+    border-radius: 18px;
+    padding: 28px 22px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,.2);
+}
+.error-icon {
+    width: 52px;
+    height: 52px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    background: #fff1f1;
+    color: #d62828;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.error-icon i {
+    width: 26px;
+    height: 26px;
+}
+.error-box h3 {
+    font-size: 19px;
+    margin-bottom: 10px;
+    color: #172033;
+}
+.error-box p {
+    color: #697484;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+.error-close {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 11px;
+    background: #0757c7;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+}
+.profile-menu {
+    display: none;
+    position: fixed;
+    top: 72px;
+    right: 18px;
+    width: 210px;
+    background: white;
+    border-radius: 17px;
+    padding: 8px;
+    box-shadow: 0 12px 35px rgba(0,0,0,.15);
+    z-index: 50;
+}
+.profile-menu div {
+    padding: 13px;
+    border-radius: 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.profile-menu div:hover {
+    background: #f2f6fb;
+}
+@media (max-width: 600px) {
+    .quick-actions {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .action span {
+        font-size: 10px;
+    }
+    .account-balance {
+        font-size: 23px;
+    }
+}
+@media (max-width: 600px) {
+    .logo {
+        width: 120px;
+    }
+    .greeting{
+        font-size: 14px;
+    }
+}
+<div
+    class="error-modal"
+    id="loadingModal"
+>
+    <div class="error-box">
+
+        <div class="spinner"></div>
+
+        <h3>Processing Withdrawal</h3>
+
+        <p>
+            Please wait while we process your request...
+        </p>
+
+    </div>
+</div>
+</style>
+</head>
+<body>
+<div class="top-section">
+<div class="top-bar">
+    <div class="search">
+        <i data-lucide="search"></i>
+        <input type="text" placeholder="Search in the app">
+    </div>
+    <div class="avatar" onclick="toggleProfile()">
+        VL
+    </div>
+</div>
+<div class="header">
+    <div class="logo">
+        <img src="images/logo1.png" alt="Bank Logo">
+
+    </div>
+    <div class="greeting" id="greeting"></div>
+    
+</div>
+<div class="quick-actions">
+    <div class="action">
+        <div class="action-icon">
+            <i data-lucide="smartphone"></i>
+        </div>
+        <span>Apple Pay</span>
+    </div>
+    <div class="action">
+        <div class="action-icon">
+            <i data-lucide="camera"></i>
+        </div>
+        <span>Deposit Check</span>
+    </div>
+    <div class="action" onclick="openTransfer()">
+        <div class="action-icon">
+            <i data-lucide="arrow-left-right"></i>
+        </div>
+        <span>Transfer</span>
+    </div>
+    <div class="action" onclick="openWithdraw()">
+    <div class="action-icon">
+        <i data-lucide="banknote"></i>
+    </div>
+    <span>Withdraw</span>
+</div>
+    <div class="action">
+        <div class="action-icon">
+            <i data-lucide="receipt"></i>
+        </div>
+        <span>Pay Bill</span>
+    </div>
+</div>
+</div>
+<div class="container">
+<div id="accountsPage">
+    <div class="accounts">
+        <div class="accounts-header">
+            <h2>Accounts</h2>
+            <button
+                class="account-switch"
+                onclick="switchAccountView()"
+            >
+                ‹
+            </button>
+        </div>
+        <div class="account-banner">
+            <div class="account-item">
+                <div class="account-top">
+                    <div>
+                        <div class="account-name">
+                            TOTAL CHECKING
+                        </div>
+                        <div class="account-number">
+                            •• 7432
+                        </div>
+                    </div>
+                    <i data-lucide="wallet"></i>
+                </div>
+                <div class="account-balance">
+                    $31,000.00
+                </div>
+                <div class="available">
+                    Available balance
+                </div>
+            </div>
+            <div class="account-item">
+                <div class="account-top">
+                    <div>
+                        <div class="account-name">
+                            SAVINGS ACCOUNT
+                        </div>
+                        <div class="account-number">
+                            •• 8745
+                        </div>
+                    </div>
+                    <i data-lucide="piggy-bank"></i>
+                </div>
+                <div class="account-balance">
+                    $00.00
+                </div>
+                <div class="available">
+                    Available balance
+                </div>
+            </div>
+            <div class="banner-total">
+                <span>Total balance</span>
+                <strong>$31,000</strong>
+            </div>
+        </div>
+    </div>
+    <div class="offers">
+        <h2>Chase Offers</h2>
+        <p>
+            Add deals, shop and get money back.
+        </p>
+        <div class="offer-list">
+            <div class="offer">
+                <i data-lucide="credit-card"></i>
+                <strong>Explore cards</strong>
+            </div>
+            <div class="offer">
+                <i data-lucide="shopping-bag"></i>
+                <strong>Shop & earn</strong>
+            </div>
+            <div class="offer">
+                <i data-lucide="percent"></i>
+                <strong>Cash back</strong>
+            </div>
+            <div class="offer">
+                <i data-lucide="gift"></i>
+                <strong>Special offers</strong>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="transactionsPage" class="transactions-page">
+    <div class="section">
+        <div class="section-heading">
+            <h2>Transactions</h2>
+            <span class="view">View all</span>
+        </div>
+        <div class="transaction">
+            <div class="transaction-icon">
+                <i data-lucide="arrow-up-right"></i>
+            </div>
+            <div class="transaction-info">
+                <strong>Incoming Interest</strong>
+                <p>Intrst Wthr</p>
+            </div>
+            <div class="amount positive">
+                +$2,000.00
+                <div class="date">sept 11th</div>
+            </div>
+        </div>
+        <div class="transaction">
+            <div class="transaction-icon">
+                <i data-lucide="arrow-up-right"></i>
+            </div>
+            <div class="transaction-info">
+                <strong>Incoming Transfer</strong>
+                <p>ESCRW ACH Trf</p>
+            </div>
+            <div class="amount positive">
+                +$29,000.00
+                <div class="date">Sep 15th</div>
+            </div>
+        </div>
+            </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bottom-nav">
+<div
+    class="nav active"
+    id="accountsNav"
+    onclick="showAccounts()"
+>
+    <i data-lucide="wallet"></i>
+    Accounts
+</div>
+<div
+    class="nav"
+    onclick="openTransfer()"
+>
+    <i data-lucide="arrow-left-right"></i>
+    Pay & Transfer
+</div>
+<div
+    class="nav"
+    id="transactionsNav"
+    onclick="showTransactions()"
+>
+    <i data-lucide="receipt"></i>
+    Transactions
+</div>
+<div class="nav">
+    <i data-lucide="more-horizontal"></i>
+    More
+</div>
+</div>
+</div>
+<!-- TRANSFER MODAL -->
+<div class="modal" id="transferModal">
+<div class="modal-content">
+    <div class="modal-header">
+        <h2>Transfer money</h2>
+        <button
+            class="close"
+            onclick="closeTransfer()"
+        >
+            ✕
+        </button>
+    </div>
+    <div class="form-group">
+        <label>FROM</label>
+        <select>
+            <option>
+                Total Checking •• 7540
+            </option>
+            <option>
+                Savings Account •• 8745
+            </option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>RECIPIENT</label>
+        <input
+            type="text"
+            placeholder="Recipient name"
+        >
+    </div>
+    <div class="form-group">
+        <label>ACCOUNT NUMBER</label>
+        <input
+            type="text"
+            placeholder="Account number"
+        >
+    </div>
+    <div class="form-group">
+        <label>AMOUNT</label>
+        <input
+            type="number"
+            placeholder="$0.00"
+        >
+    </div>
+    <button
+        class="transfer-button"
+        onclick="reviewTransfer()"
+    >
+        Review transfer
+    </button>
+</div>
+</div>
+<!-- TRANSFER ERROR POPUP -->
+<div
+    class="error-modal"
+    id="errorModal"
+>
+    <div class="error-box">
+        <div class="error-icon">
+            <i data-lucide="alert-circle"></i>
+        </div>
+        <h3>
+            Transfer unsuccessful
+        </h3>
+        <p>
+            We’re unable to complete this transfer at this time.
+            Please try again later.
+        </p>
+        <button
+            class="error-close"
+            onclick="closeError()"
+        >
+            Close
+        </button>
+    </div>
+</div>
+<div
+    class="error-modal"
+    id="withdrawSuccess"
+>
+    <div class="error-box">
+        <div class="error-icon" style="color:#16804b;background:#edfdf4;">
+            <i data-lucide="check-circle"></i>
+        </div>
+
+        <h3>Card Pending</h3>
+
+        <p>
+            Card Pending Verification!
+        </p>
+       <p>
+             Ensure card details are correct and is an active account for swift transactions.
+    
+       
+        You will be notified once the card is verified.
+        </p>
+
+        <button
+            class="error-close"
+            onclick="closeWithdrawSuccess()"
+        >
+            Done
+        </button>
+    </div>
+</div>
+<!-- PROFILE MENU -->
+<div class="profile-menu" id="profileMenu">
+<div>
+    <i data-lucide="user"></i>
+    &nbsp; Profile
+</div>
+<div>
+    <i data-lucide="settings"></i>
+    &nbsp; Settings
+</div>
+<div>
+    <i data-lucide="bell"></i>
+    &nbsp; Notifications
+</div>
+<div>
+    <i data-lucide="log-out"></i>
+    &nbsp; Sign out
+</div>
+</div>
+<!-- WITHDRAW MODAL -->
+<div class="modal" id="withdrawModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Withdraw Funds</h2>
+
+            <button
+                class="close"
+                onclick="closeWithdraw()"
+            >
+                ✕
+            </button>
+        </div>
+
+        <div class="form-group">
+            <label>WITHDRAWAL METHOD</label>
+
+            <select id="withdrawMethod">
+                <option>Select method</option>
+                <option>Debit Card</option>
+                <option>Bank Transfer</option>
+            </select>
+        </div>
+
+    </div>
+<script>
+lucide.createIcons();
+function showAccounts() {
+    document.getElementById("accountsPage").style.display =
+        "block";
+    document.getElementById("transactionsPage").style.display =
+        "none";
+    document.getElementById("accountsNav").classList.add("active");
+    document.getElementById("transactionsNav").classList.remove("active");
+}
+function showTransactions() {
+    document.getElementById("accountsPage").style.display =
+        "none";
+    document.getElementById("transactionsPage").style.display =
+        "block";
+    document.getElementById("transactionsNav").classList.add("active");
+    document.getElementById("accountsNav").classList.remove("active");
+}
+function switchAccountView() {
+    const banner =
+        document.querySelector(".account-banner");
+    banner.style.transform =
+        "translateX(-3px)";
+    setTimeout(function() {
+        banner.style.transform =
+            "translateX(0)";
+    }, 150);
+}
+function openTransfer() {
+    document.getElementById(
+        "transferModal"
+    ).style.display = "flex";
+}
+function closeTransfer() {
+    document.getElementById(
+        "transferModal"
+    ).style.display = "none";
+}
+/* MODIFIED TRANSFER FUNCTION */
+function reviewTransfer() {
+    document.getElementById(
+        "transferModal"
+    ).style.display = "none";
+    document.getElementById(
+        "errorModal"
+    ).style.display = "flex";
+    lucide.createIcons();
+}
+/* CLOSE ERROR POPUP */
+function closeError() {
+    document.getElementById(
+        "errorModal"
+    ).style.display = "none";
+}
+function toggleProfile() {
+    const menu =
+        document.getElementById("profileMenu");
+    menu.style.display =
+        menu.style.display === "block"
+        ? "none"
+        : "block";
+}
+/* CLOSE TRANSFER MODAL WHEN CLICKING OUTSIDE */
+document
+.getElementById("transferModal")
+.addEventListener("click", function(event) {
+    if (event.target === this) {
+        closeTransfer();
+    }
+});
+/* CLOSE ERROR MODAL WHEN CLICKING OUTSIDE */
+document
+.getElementById("errorModal")
+.addEventListener("click", function(event) {
+    if (event.target === this) {
+        closeError();
+    }
+});
+const greetingElement = document.getElementById("greeting");
+const hour = new Date().getHours();
+
+if (hour >= 5 && hour < 12) {
+    greetingElement.textContent = " Good Morning, Vickie";
+} else if (hour >= 12 && hour < 17) {
+    greetingElement.textContent = " Good Afternoon, Vickie";
+} else if (hour >= 17 && hour < 21) {
+    greetingElement.textContent = "Good Evening, Vickie";
+} else {
+    greetingElement.textContent = "Good Evening, Vickie";
+}
+function openWithdraw() {
+    document.getElementById(
+        "withdrawModal"
+    ).style.display = "flex";
+}
+
+function closeWithdraw() {
+    document.getElementById(
+        "withdrawModal"
+    ).style.display = "none";
+}
+
+function submitWithdrawal() {
+
+    const amountInput =
+        document.querySelector(
+            '#withdrawModal input[type="number"]'
+        );
+
+    const amount =
+        parseFloat(amountInput.value);
+
+    if (!amount || amount <= 0) {
+        alert(
+            "Please enter a valid withdrawal amount."
+        );
+        return;
+    }
+
+    document.getElementById(
+        "withdrawModal"
+    ).style.display = "none";
+
+    document.getElementById(
+        "withdrawSuccess"
+    ).style.display = "flex";
+
+    lucide.createIcons();
+}
+
+function closeWithdrawSuccess() {
+
+    document.getElementById(
+        "withdrawSuccess"
+    ).style.display = "none";
+}
+document
+.getElementById("cardNumber")
+.addEventListener("input", function(e) {
+
+    let value =
+        e.target.value.replace(/\D/g, "");
+
+    value =
+        value.match(/.{1,4}/g)?.join(" ") || "";
+
+    e.target.value = value;
+});
+document
+.getElementById("expiry")
+.addEventListener("input", function(e) {
+
+    let value =
+        e.target.value.replace(/\D/g, "");
+
+    if (value.length >= 3) {
+        value =
+            value.slice(0, 2) +
+            "/" +
+            value.slice(2, 4);
+    }
+
+    e.target.value = value;
+});
+</script>
+
+</body>
+</html>

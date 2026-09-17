@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DEMO BANK</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+body{
+    min-height:100vh;
+    background:linear-gradient(
+        20deg,
+        #1e6ccc 30%,
+        #76a6dc 80%
+    );
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+.logo{
+    margin-top:30px;
+    width:120px;
+    height:70px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.logo img{
+    width:85px;
+    height:65px;
+    object-fit:contain;
+    display:block;
+}
+.login-card{
+    background:white;
+    width:85%;
+    max-width:330px;
+    margin-top:180px;
+    border-radius:3px;
+    padding:18px;
+    box-shadow:0 4px 12px rgba(0,0,0,.25);
+}
+/* INPUT */
+.input-group{
+    margin-bottom:12px;
+    position:relative;
+}
+.input-group input{
+    width:100%;
+    border:none;
+    border-bottom:1px solid #ddd;
+    padding:12px 35px 12px 32px;
+    font-size:15px;
+    outline:none;
+}
+.input-group input:focus{
+    border-bottom:1px solid #2c84e8;
+}
+/* USERNAME / LOCK ICON */
+.input-icon{
+    position:absolute;
+    left:3px;
+    top:11px;
+    width:18px;
+    height:18px;
+    color:#777;
+    pointer-events:none;
+}
+.input-icon svg{
+    width:18px;
+    height:18px;
+    display:block;
+}
+/* PASSWORD */
+.password-box{
+    position:relative;
+}
+.show-btn{
+    position:absolute;
+    right:0;
+    top:12px;
+    color:#0b67d0;
+    font-size:10px;
+    cursor:pointer;
+    font-weight:bold;
+}
+/* OPTIONS */
+.options{
+    display:flex;
+    justify-content:space-between;
+    margin:18px 0;
+    font-size:13px;
+    color:#666;
+}
+.options label{
+    display:flex;
+    align-items:center;
+    gap:5px;
+}
+/* LOGIN */
+.login-btn{
+    width:100%;
+    height:42px;
+    border:none;
+    background:#2c84e8;
+    color:white;
+    font-size:18px;
+    border-radius:2px;
+    cursor:pointer;
+}
+.login-btn:hover{
+    background:#176dcc;
+}
+/* BIOMETRIC */
+.biometric-btn{
+    width:100%;
+    height:40px;
+    margin-top:10px;
+    border:1px solid #2c84e8;
+    background:white;
+    color:#1269c7;
+    font-size:14px;
+    font-weight:bold;
+    border-radius:2px;
+    cursor:pointer;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:8px;
+}
+.biometric-btn:hover{
+    background:#f2f7fd;
+}
+.biometric-icon{
+    width:20px;
+    height:20px;
+}
+/* ERROR */
+.login-error{
+    color:#c62828;
+    font-size:12px;
+    text-align:center;
+    margin-top:10px;
+    min-height:15px;
+}
+/* FORGOT */
+.forgot{
+    text-align:center;
+    margin-top:15px;
+}
+.forgot a{
+    color:#004fae;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:bold;
+}
+/* FOOTER */
+.footer-links{
+    margin-top:20px;
+    text-align:center;
+}
+.footer-links a{
+    color:#004fae;
+    text-decoration:none;
+    margin:0 10px;
+    font-size:14px;
+}
+.footer-small{
+    margin-top:25px;
+    text-align:center;
+    color:#f2f2f2;
+    font-size:11px;
+    width:90%;
+    max-width:400px;
+    line-height:1.5;
+}
+/* MODAL */
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    justify-content:center;
+    align-items:center;
+}
+.modal-content{
+    background:white;
+    padding:25px;
+    border-radius:10px;
+    width:300px;
+    text-align:center;
+}
+.modal-content button{
+    margin-top:15px;
+    padding:10px 20px;
+    border:none;
+    background:#2c84e8;
+    color:white;
+    border-radius:5px;
+    cursor:pointer;
+}
+</style>
+</head>
+<body>
+<div class="logo">
+    <img src="images/logo1.png" alt="Bank Logo">
+</div>
+<div class="login-card">
+    <!-- USERNAME -->
+    <div class="input-group">
+        <span class="input-icon">
+            <svg viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="2">
+                <circle cx="12" cy="8" r="4"></circle>
+                <path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"></path>
+            </svg>
+        </span>
+        <input
+            type="text"
+            id="username"
+            placeholder="Enter your Username"
+            autocomplete="username"
+        >
+    </div>
+    <!-- PASSWORD -->
+    <div class="input-group password-box">
+        <span class="input-icon">
+            <svg viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="2">
+                <rect
+                    x="5"
+                    y="10"
+                    width="14"
+                    height="10"
+                    rx="2">
+                </rect>
+                <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+            </svg>
+        </span>
+        <input
+            type="password"
+            id="password"
+            placeholder="Enter your Password"
+            autocomplete="current-password"
+        >
+        <span
+            class="show-btn"
+            onclick="togglePassword()"
+        >
+            
+        </span>
+    </div>
+    <!-- OPTIONS -->
+    <div class="options">
+        <label>
+            <input type="checkbox" id="rememberMe">
+            Remember me
+        </label>
+        <label>
+            <input type="checkbox">
+            Use token
+        </label>
+    </div>
+    <!-- LOGIN -->
+    <button
+        class="login-btn"
+        onclick="login()"
+    >
+        Login
+    </button>
+    <!-- BIOMETRIC -->
+    <button
+        class="biometric-btn"
+        onclick="biometricLogin()"
+    >
+        <svg
+            class="biometric-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+        >
+            <path d="M8 3a8 8 0 0 1 8 0"></path>
+            <path d="M5 6a11 11 0 0 1 14 0"></path>
+            <path d="M4 10a12 12 0 0 1 16 0"></path>
+            <path d="M6 14c0-3 2.5-5 6-5s6 2 6 5"></path>
+            <path d="M9 18c0-2 1-3 3-3s3 1 3 3"></path>
+            <path d="M12 21v-2"></path>
+        </svg>
+        Face ID 
+    </button>
+    <!-- ERROR -->
+    <p
+        id="loginError"
+        class="login-error"
+    ></p>
+    <!-- FORGOT -->
+    <div class="forgot">
+        <a
+            href="#"
+            onclick="openModal(); return false;"
+        >
+            Forgot Username or Password?
+        </a>
+    </div>
+</div>
+<div class="footer-links">
+    <a href="#">Enroll</a>
+    <a href="#">ATM & Branch</a>
+    <a href="#">Contact</a>
+</div>
+<div class="footer-small">
+    FAQs | Privacy | Info<br><br>
+    Equal Housing Lender<br>
+    Demo banking project for educational purposes
+</div>
+<!-- MODAL -->
+<div id="forgotModal" class="modal">
+    <div class="modal-content">
+        <h3>Password Recovery</h3>
+        <p>
+            Recovery email sent successfully.
+        </p>
+        <button onclick="closeModal()">
+            Close
+        </button>
+    </div>
+</div>
+<script>
+/* ============================
+   DEMO ACCOUNT
+============================ */
+const DEMO_USERNAME = "Vickierausch@escrowfnds";
+const DEMO_PASSWORD = "vickiele";
+/* ============================
+   SHOW / HIDE PASSWORD
+============================ */
+function togglePassword(){
+    const password =
+        document.getElementById("password");
+    const showButton =
+        document.querySelector(".show-btn");
+    if(password.type === "password"){
+        password.type = "text";
+        showButton.textContent = "hide";
+    }else{
+        password.type = "password";
+        showButton.textContent = "show";
+    }
+}
+/* ============================
+   LOGIN
+============================ */
+function login(){
+    const username =
+        document.getElementById("username").value.trim();
+    const password =
+        document.getElementById("password").value;
+    const error =
+        document.getElementById("loginError");
+    error.textContent = "";
+    if(username === "" || password === ""){
+        error.textContent =
+            "Please enter your username and password.";
+        return;
+    }
+    if(
+        username === DEMO_USERNAME &&
+        password === DEMO_PASSWORD
+    ){
+        /*
+         * This session flag means the user
+         * has successfully logged in.
+         */
+        sessionStorage.setItem(
+            "loggedIn",
+            "true"
+        );
+        /*
+         * Optional: remember username
+         */
+        if(
+            document.getElementById("rememberMe").checked
+        ){
+            localStorage.setItem(
+                "demoUsername",
+                username
+            );
+        }
+        window.location.href =
+            "dashboard.html";
+    }else{
+        error.textContent =
+            "Incorrect username or password.";
+    }
+}
+/* ============================
+   BIOMETRIC BUTTON
+============================ */
+async function biometricLogin(){
+    const error =
+        document.getElementById("loginError");
+    error.textContent = "";
+    /*
+     * Check whether the browser/device
+     * supports WebAuthn.
+     */
+    if(
+        window.PublicKeyCredential &&
+        navigator.credentials
+    ){
+        try{
+            /*
+             * A real WebAuthn biometric login
+             * requires a registered credential
+             * and a server.
+             *
+             * We therefore don't pretend that
+             * a biometric check succeeded.
+             */
+            if(
+                PublicKeyCredential
+                    .isUserVerifyingPlatformAuthenticatorAvailable
+            ){
+                const available =
+                    await PublicKeyCredential
+                    .isUserVerifyingPlatformAuthenticatorAvailable();
+                if(available){
+                    error.textContent =
+                        "Biometric authentication is available, but this demo requires WebAuthn registration.";
+                    return;
+                }
+            }
+        }catch(err){
+            console.log(err);
+        }
+    }
+    error.textContent =
+        "Face ID / Fingerprint is not available in this demo environment.";
+}
+/* ============================
+   FORGOT PASSWORD MODAL
+============================ */
+function openModal(){
+    document.getElementById(
+        "forgotModal"
+    ).style.display = "flex";
+}
+function closeModal(){
+    document.getElementById(
+        "forgotModal"
+    ).style.display = "none";
+}
+/* ============================
+   RESTORE REMEMBERED USERNAME
+============================ */
+window.addEventListener("DOMContentLoaded", function(){
+    const savedUsername =
+        localStorage.getItem("demoUsername");
+    if(savedUsername){
+        document.getElementById(
+            "username"
+        ).value = savedUsername;
+        document.getElementById(
+            "rememberMe"
+        ).checked = true;
+    }
+});
+</script>
+</body>
+</html>
